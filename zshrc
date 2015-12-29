@@ -84,6 +84,10 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+unalias run-help
+autoload run-help
+HELPDIR=/usr/local/share/zsh/help
+
 export PATH="/Users/ean02/.rbenv/shims:/usr/local/bin:/Users/ean02/.bin:/usr/bin:/bin:/usr/sbin:/sbin"
 # export MANPATH="/usr/local/man:$MANPATH"
 eval "$(rbenv init - --no-rehash zsh)"
@@ -94,6 +98,8 @@ export NVM_DIR="/Users/ean02/.nvm"
 export DOCKER_HOST=tcp://192.168.59.103:2376
 export DOCKER_CERT_PATH=/Users/ean02/.boot2docker/certs/boot2docker-vm
 export DOCKER_TLS_VERIFY=1
+
+export JAVA_HOME=$(/usr/libexec/java_home)
 
 # gem editor
 export GEM_EDITOR="atom"
