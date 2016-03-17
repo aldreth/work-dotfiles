@@ -92,6 +92,10 @@ export PATH="/Users/ean02/.rbenv/shims:/usr/local/bin:/Users/ean02/.bin:/usr/bin
 # export MANPATH="/usr/local/man:$MANPATH"
 eval "$(rbenv init - --no-rehash zsh)"
 
+# path for postgres.app
+export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/latest/bin
+
+
 export NVM_DIR="/Users/ean02/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
