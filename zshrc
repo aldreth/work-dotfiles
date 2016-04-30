@@ -56,7 +56,6 @@ plugins=(git rails bundler ember)
 
 # User configuration
 
-
 source $ZSH/oh-my-zsh.sh
 
 # You may need to manually set your language environment
@@ -95,13 +94,9 @@ eval "$(rbenv init - --no-rehash zsh)"
 # path for postgres.app
 export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/latest/bin
 
-
 export NVM_DIR="/Users/ean02/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
-export DOCKER_HOST=tcp://192.168.59.103:2376
-export DOCKER_CERT_PATH=/Users/ean02/.boot2docker/certs/boot2docker-vm
-export DOCKER_TLS_VERIFY=1
 
 export JAVA_HOME=$(/usr/libexec/java_home)
 
