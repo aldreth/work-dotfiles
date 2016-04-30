@@ -25,8 +25,6 @@ brew_cask_install_or_upgrade() {
 brew_tap 'caskroom/cask'
 brew_install_or_upgrade 'selenium-server-standalone'
 brew_install_or_upgrade 'brew-cask'
-brew_install_or_upgrade 'homebrew/versions/phantomjs182'
-brew_install_or_upgrade 'shellcheck'
 brew_cask_install_or_upgrade '1password'
 brew_cask_install_or_upgrade 'atom'
 brew_cask_install_or_upgrade 'chromecast'
