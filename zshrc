@@ -1,5 +1,5 @@
 # Path to your oh-my-zsh installation.
-export ZSH=/Users/ean02/.oh-my-zsh
+export ZSH=/Users/edward/.oh-my-zsh
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -46,7 +46,7 @@ ZSH_THEME="robbyrussell"
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
-DEFAULT_USER=ean02
+DEFAULT_USER=edward
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
@@ -87,15 +87,15 @@ unalias run-help
 autoload run-help
 HELPDIR=/usr/local/share/zsh/help
 
-export PATH="/Users/ean02/.rbenv/shims:/usr/local/bin:/Users/ean02/.bin:/usr/bin:/bin:/usr/sbin:/sbin"
+export PATH="/Users/edward/.rbenv/shims:/usr/local/bin:/Users/edward/.bin:/usr/bin:/bin:/usr/sbin:/sbin"
 # export MANPATH="/usr/local/man:$MANPATH"
 eval "$(rbenv init - --no-rehash zsh)"
 
 # path for postgres.app
 export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/latest/bin
 
-export NVM_DIR="/Users/ean02/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+export NVM_DIR="$HOME/.nvm"
+. "$(brew --prefix nvm)/nvm.sh"
 
 
 export JAVA_HOME=$(/usr/libexec/java_home)
@@ -105,3 +105,6 @@ export GEM_EDITOR="atom"
 export BUNDLER_EDITOR="atom"
 
 $(boot2docker shellinit 2>/dev/null)
+
+export PATH="$HOME/.bin:$PATH"
+eval "$(rbenv init - --no-rehash)"
