@@ -1,10 +1,11 @@
 
 brew bundle --file=- <<EOF
 tap 'caskroom/cask'
+brew 'brew-cask'
+brew 'mysql'
+brew 'nvm'
 brew 'selenium-server-standalone'
 brew 'watchman'
-brew 'nvm'
-brew 'brew-cask'
 cask 'firefox'
 cask 'github-desktop'
 cask 'gitify'
@@ -19,4 +20,5 @@ cask 'spectacle'
 cask 'skype'
 cask 'sonos'
 cask 'spotify'
+cask 'virtualbox'
 EOF
