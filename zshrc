@@ -108,3 +108,5 @@ $(boot2docker shellinit 2>/dev/null)
 
 export PATH="$HOME/.bin:$PATH"
 eval "$(rbenv init - --no-rehash)"
+
+ssh-add -K 2>/dev/null;
