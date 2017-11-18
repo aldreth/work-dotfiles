@@ -1,4 +1,3 @@
-
 brew bundle --file=- <<EOF
 tap 'caskroom/cask'
 brew 'brew-cask'
@@ -13,12 +12,14 @@ cask 'google-drive'
 cask 'iterm2'
 cask 'postico'
 cask 'postman'
+cask 'puppet-agent'
 cask 'rowanj-gitx'
 cask 'screenhero'
+cask 'sequel-pro'
 cask 'slack'
 cask 'spectacle'
 cask 'skype'
 cask 'sonos'
-cask 'spotify'
+cask 'vagrant'
 cask 'virtualbox'
 EOF
