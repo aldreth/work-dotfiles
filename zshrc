@@ -52,7 +52,9 @@ DEFAULT_USER=edwardandrewshodgson
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git rails bundler docker-compose vagrant)
+plugins=(git rails docker-compose docker jira kubectl)
+
+export JIRA_URL=https://anaplansite.atlassian.net
 
 # User configuration
 
@@ -83,22 +85,32 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias cdw="cd ~/work"
+alias mr="nvm use && make -C ~/work/dashboards-and-visualisations down run"
+alias mrd="nvm use && make -C ~/work/dashboards-and-visualisations down"
+alias mrm="nvm use && make -C ~/work/dashboards-and-visualisations down run-model-ui"
+alias mrp="nvm use && make -C ~/work/dashboards-and-visualisations down run-planning-hub"
+
+# Delete node_modules in directory & all sub-directories
+alias rmnm="find . -name 'node_modules' -type d -prune -print -exec rm -rf '{}' \;"
 
 unalias run-help
 autoload run-help
 HELPDIR=/usr/local/share/zsh/help
 
-export PATH="/usr/local/bin:/Users/edwardandrewshodgson/.bin:/usr/bin:/bin:/usr/sbin:/sbin"
+export PATH="/usr/local/bin:/Users/edwardandrewshodgson/.bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/sbin"
 # export MANPATH="/usr/local/man:$MANPATH"
-# eval "$(rbenv init - --no-rehash zsh)"
+
+eval "$(rbenv init -)"
 
 # path for postgres.app
 # export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/latest/bin
 
 # gem editor
-export GEM_EDITOR="atom"
-export BUNDLER_EDITOR="atom"
+export GEM_EDITOR="code --wait"
+export BUNDLER_EDITOR="code --wait"
 
+# node
+export NODE_ENV="development"
 
 # tiny care terminal
 export TTC_BOTS='tinycarebot,selfcare_bot,magicrealismbot'
@@ -107,8 +119,37 @@ export TTC_REPOS_DEPTH=2
 export TTC_WEATHER='York, United Kingdom'
 export TTC_CELSIUS=true
 export TTC_UPDATE_INTERVAL=20
-
+export TTC_CONSUMER_KEY='a6x1uH6F77hYvtNPR1kkkZpR3'
+export TTC_CONSUMER_SECRET='7YNhq80l5TBVlwmSizBGXDZIyfJMQOptfAKEgjaX3cULPLEVPQ'
+export TTC_ACCESS_TOKEN='11474442-046FtwMneztt3N63C7eUiaFnJlOMu2OZSr12g9lXx'
+export TTC_ACCESS_TOKEN_SECRET='NnJhYTFs7v7hPPvs6LTTqGFISZcqNB7avnnRS2rcBlWf2'
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# Rust-lang
+export PATH="$HOME/.cargo/bin:$PATH"
+
+# python
+export PATH=$HOME/Library/Python/3.7/bin:$PATH
+
+# Completions
+fpath+=~/.zfunc
+compinit
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="/Users/edwardandrewshodgson/.sdkman"
+[[ -s "/Users/edwardandrewshodgson/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/edwardandrewshodgson/.sdkman/bin/sdkman-init.sh"
+
+# adb/android
+export PATH=$HOME/Library/Android/sdk/platform-tools/adb:$PATH
+
+# heroku autocomplete setup
+HEROKU_AC_ZSH_SETUP_PATH=/Users/edwardandrewshodgson/Library/Caches/heroku/autocomplete/zsh_setup && test -f $HEROKU_AC_ZSH_SETUP_PATH && source $HEROKU_AC_ZSH_SETUP_PATH;
+
+export GROOVY_HOME=/usr/local/opt/groovy/libexec
+
+# cd'ing to frequently-used directories - https://thoughtbot.com/blog/cding-to-frequently-used-directories-in-zsh
+setopt auto_cd
+cdpath=($HOME $HOME/work $HOME/work/dashboards-and-visualisations/packages $HOME/work/dashboards-and-visualisations/workspaces $HOME/play)

@@ -5,9 +5,11 @@
 	clean = git-lfs clean -- %f
 [user]
 	name = Edward Andrews-Hodgson
-	email = edward@aldreth.com
+	email = edward.andrewshodgson@anaplan.com
 	signingkey = 111
 [core]
-	editor = atom --wait
+	editor = code --wait
 [push]
 	default = simple
+[hub]
+	host = github.anaplan.com
