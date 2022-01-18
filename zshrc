@@ -1,12 +1,20 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 # Path to your oh-my-zsh installation.
-export ZSH=/Users/edwardandrewshodgson/.oh-my-zsh
+export ZSH=/Users/edwardandrews-hodgson/.oh-my-zsh
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
 # ZSH_THEME="robbyrussell"
-ZSH_THEME="agnoster"
+# ZSH_THEME="agnoster"
+ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -46,13 +54,22 @@ ZSH_THEME="agnoster"
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
-DEFAULT_USER=edwardandrewshodgson
+DEFAULT_USER=edwardandrews-hodgson
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git rails docker-compose docker jira kubectl)
+plugins=(git docker-compose docker jira kubectl zsh-completions alias-tips rails zsh-autosuggestions zsh-syntax-highlighting)
+autoload -U compinit && compinit
+
+# This enables Zsh to understand commands like docker run -it ubuntu.
+# However, by enabling this, this also makes Zsh complete
+# docker run -u<tab> with docker run -uapprox which is not valid.
+# The users have to put the space or the equal sign themselves before trying to complete.
+
+zstyle ':completion:*:*:docker:*' option-stacking yes
+zstyle ':completion:*:*:docker-*:*' option-stacking yes
 
 export JIRA_URL=https://anaplansite.atlassian.net
 
@@ -85,25 +102,35 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias cdw="cd ~/work"
-alias mr="nvm use && make -C ~/work/dashboards-and-visualisations down run"
-alias mrd="nvm use && make -C ~/work/dashboards-and-visualisations down"
-alias mrm="nvm use && make -C ~/work/dashboards-and-visualisations down run-model-ui"
-alias mrp="nvm use && make -C ~/work/dashboards-and-visualisations down run-planning-hub"
+alias mr="make -C ~/work/dashboards-and-visualisations down run"
+alias mrd="make -C ~/work/dashboards-and-visualisations down"
+alias mrm="make -C ~/work/dashboards-and-visualisations down run-model-ui"
+alias mrmcc="make -C ~/work/dashboards-and-visualisations down run-model-ui-core-client"
+alias mrmccl="make -C ~/work/dashboards-and-visualisations down run-model-ui-core-client-local-container"
+alias mrp="make -C ~/work/dashboards-and-visualisations down run-planning-hub"
+alias mrh="make -C ~/work/dashboards-and-visualisations down run-home"
+alias mmrs="make -C ~/work/dashboards-and-visualisations/resources/dev-stack/model-ui stop start"
+
+# make pr from any directory
+alias mpr="make -C ~/work/dashboards-and-visualisations pr"
 
 # Delete node_modules in directory & all sub-directories
 alias rmnm="find . -name 'node_modules' -type d -prune -print -exec rm -rf '{}' \;"
+
+# Find my ip address when on wifi
+alias myip="ipconfig getifaddr en0"
 
 unalias run-help
 autoload run-help
 HELPDIR=/usr/local/share/zsh/help
 
-export PATH="/usr/local/bin:/Users/edwardandrewshodgson/.bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/sbin"
+export PATH="/usr/local/bin:/Users/edwardandrews-hodgson/.bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/sbin"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 eval "$(rbenv init -)"
 
 # path for postgres.app
-# export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/latest/bin
+export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/latest/bin
 
 # gem editor
 export GEM_EDITOR="code --wait"
@@ -114,7 +141,7 @@ export NODE_ENV="development"
 
 # tiny care terminal
 export TTC_BOTS='tinycarebot,selfcare_bot,magicrealismbot'
-export TTC_REPOS='/Users/edwardandrewshodgson/work,/Users/edwardandrewshodgson/play'
+export TTC_REPOS='/Users/edwardandrews-hodgson/work,/Users/edwardandrews-hodgson/play'
 export TTC_REPOS_DEPTH=2
 export TTC_WEATHER='York, United Kingdom'
 export TTC_CELSIUS=true
@@ -125,8 +152,8 @@ export TTC_ACCESS_TOKEN='11474442-046FtwMneztt3N63C7eUiaFnJlOMu2OZSr12g9lXx'
 export TTC_ACCESS_TOKEN_SECRET='NnJhYTFs7v7hPPvs6LTTqGFISZcqNB7avnnRS2rcBlWf2'
 
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
 
 # Rust-lang
 export PATH="$HOME/.cargo/bin:$PATH"
@@ -138,18 +165,29 @@ export PATH=$HOME/Library/Python/3.7/bin:$PATH
 fpath+=~/.zfunc
 compinit
 
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="/Users/edwardandrewshodgson/.sdkman"
-[[ -s "/Users/edwardandrewshodgson/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/edwardandrewshodgson/.sdkman/bin/sdkman-init.sh"
-
 # adb/android
 export PATH=$HOME/Library/Android/sdk/platform-tools/adb:$PATH
 
 # heroku autocomplete setup
-HEROKU_AC_ZSH_SETUP_PATH=/Users/edwardandrewshodgson/Library/Caches/heroku/autocomplete/zsh_setup && test -f $HEROKU_AC_ZSH_SETUP_PATH && source $HEROKU_AC_ZSH_SETUP_PATH;
+HEROKU_AC_ZSH_SETUP_PATH=/Users/edwardandrews-hodgson/Library/Caches/heroku/autocomplete/zsh_setup && test -f $HEROKU_AC_ZSH_SETUP_PATH && source $HEROKU_AC_ZSH_SETUP_PATH
 
 export GROOVY_HOME=/usr/local/opt/groovy/libexec
 
 # cd'ing to frequently-used directories - https://thoughtbot.com/blog/cding-to-frequently-used-directories-in-zsh
 setopt auto_cd
 cdpath=($HOME $HOME/work $HOME/work/dashboards-and-visualisations/packages $HOME/work/dashboards-and-visualisations/workspaces $HOME/play)
+
+# give node more memory
+export NODE_OPTIONS="--max-old-space-size=16384"
+
+for c in $(IFS=$'\n' find ~/.kube/contexts -type f -name "*.yaml")
+do
+  export KUBECONFIG=$c:$KUBECONFIG
+done
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="/Users/edwardandrews-hodgson/.sdkman"
+[[ -s "/Users/edwardandrews-hodgson/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/edwardandrews-hodgson/.sdkman/bin/sdkman-init.sh"
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

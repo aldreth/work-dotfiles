@@ -13,3 +13,5 @@
 	default = simple
 [hub]
 	host = github.anaplan.com
+[init]
+	defaultBranch = main
