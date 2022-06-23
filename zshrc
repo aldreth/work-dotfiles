@@ -72,6 +72,10 @@ zstyle ':completion:*:*:docker:*' option-stacking yes
 zstyle ':completion:*:*:docker-*:*' option-stacking yes
 
 export JIRA_URL=https://anaplansite.atlassian.net
+export JIRA_API_USER=edward.andrewshodgson@anaplan.com
+export JIRA_API_TOKEN=
+export JIRA_ACCOUNT_ID=waVw0kZ9tryR9uipHWlI84E6
+export DEFAULT_JIRA_BACKLOG=LOTUS
 
 # User configuration
 
@@ -146,10 +150,10 @@ export TTC_REPOS_DEPTH=2
 export TTC_WEATHER='York, United Kingdom'
 export TTC_CELSIUS=true
 export TTC_UPDATE_INTERVAL=20
-export TTC_CONSUMER_KEY='a6x1uH6F77hYvtNPR1kkkZpR3'
-export TTC_CONSUMER_SECRET='7YNhq80l5TBVlwmSizBGXDZIyfJMQOptfAKEgjaX3cULPLEVPQ'
-export TTC_ACCESS_TOKEN='11474442-046FtwMneztt3N63C7eUiaFnJlOMu2OZSr12g9lXx'
-export TTC_ACCESS_TOKEN_SECRET='NnJhYTFs7v7hPPvs6LTTqGFISZcqNB7avnnRS2rcBlWf2'
+export TTC_CONSUMER_KEY=''
+export TTC_CONSUMER_SECRET=''
+export TTC_ACCESS_TOKEN=''
+export TTC_ACCESS_TOKEN_SECRET=''
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
@@ -185,9 +189,16 @@ do
   export KUBECONFIG=$c:$KUBECONFIG
 done
 
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="/Users/edwardandrews-hodgson/.sdkman"
-[[ -s "/Users/edwardandrews-hodgson/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/edwardandrews-hodgson/.sdkman/bin/sdkman-init.sh"
+# aws profile
+export AWS_PROFILE=ap-lotus-dev
+
+# gcloud cli
+source "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
+source "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="/Users/edwardandrews-hodgson/.sdkman"
+[[ -s "/Users/edwardandrews-hodgson/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/edwardandrews-hodgson/.sdkman/bin/sdkman-init.sh"
