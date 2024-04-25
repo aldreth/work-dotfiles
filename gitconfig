@@ -9,9 +9,20 @@
 	signingkey = 111
 [core]
 	editor = code --wait
+	ignoreCase = false
 [push]
 	default = simple
+	autoSetupRemote = true
 [hub]
 	host = github.anaplan.com
 [init]
 	defaultBranch = main
+[advice]
+	skippedCherryPicks = false
+[alias]
+	cleanup = "!git branch -vv | grep ': gone]' | cut -f 3 -d ' ' | xargs -n 1 git branch -D"
+[maintenance]
+	strategy = incremental
+	repo = /Users/edward.andrewshodgson/Developer/work/dashboard-config-service
+	repo = /Users/edward.andrewshodgson/Developer/work/dashboards-and-visualisations
+	repo = /Users/edward.andrewshodgson/Developer/work/core-client
