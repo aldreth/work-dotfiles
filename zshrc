@@ -60,7 +60,7 @@ DEFAULT_USER=edward.andrewshodgson
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git docker-compose docker jira kubectl zsh-completions alias-tips rails zsh-autosuggestions zsh-syntax-highlighting)
+plugins=(git docker-compose docker jira kubectl zsh-completions alias-tips zsh-autosuggestions zsh-syntax-highlighting)
 autoload -U compinit && compinit
 
 # This enables Zsh to understand commands like docker run -it ubuntu.
@@ -105,18 +105,30 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+alias cdp="cd ~/Developer/play"
 alias cdw="cd ~/Developer/work"
-alias mr="make -C ~/Developer/work/dashboards-and-visualisations down run"
-alias mrd="make -C ~/Developer/work/dashboards-and-visualisations down"
-alias mrm="make -C ~/Developer/work/dashboards-and-visualisations down run-model-ui"
-alias mrmcc="make -C ~/Developer/work/dashboards-and-visualisations down run-model-ui-core-client"
-alias mrmccl="make -C ~/Developer/work/dashboards-and-visualisations down run-model-ui-core-client-local-container"
+
+# dashvis stop & start
+# make stack versions
+# alias mr="make -C ~/Developer/work/dashboards-and-visualisations down run"
+# alias mrd="make -C ~/Developer/work/dashboards-and-visualisations down"
+# alias mrm="make -C ~/Developer/work/dashboards-and-visualisations down run-model-ui"
+# alias mrmcc="make -C ~/Developer/work/dashboards-and-visualisations down run-model-ui-core-client"
+# alias mrp="make -C ~/Developer/work/dashboards-and-visualisations down run-planning-hub"
+# alias mrh="make -C ~/Developer/work/dashboards-and-visualisations down run-home"
+# alias mmrs="make -C ~/Developer/work/dashboards-and-visualisations/resources/dev-stack/model-ui stop start"
+
+# tilt stack versions
+alias mts="make tilt-setup"
+alias mr="tilt up -- --profile springboard-ui"
+alias mrd="make -C ~/Developer/work/dashboards-and-visualisations tilt-down"
+alias mrm="tilt up -- --profile model-ui"
+alias mrmcc="tilt up -- --profile model-ui-core-client"
 alias mrp="make -C ~/Developer/work/dashboards-and-visualisations down run-planning-hub"
-alias mrh="make -C ~/Developer/work/dashboards-and-visualisations down run-home"
-alias mmrs="make -C ~/Developer/work/dashboards-and-visualisations/resources/dev-stack/model-ui stop start"
+alias mrh="tilt up -- --profile home"
 
 # make pr from any directory
-alias mpr="make -C ~/Developer/work/dashboards-and-visualisations pr"
+alias mpr="make -C ~/Developer/work/dashboards-and-visualisations pr-gari"
 
 # Delete node_modules in directory & all sub-directories
 alias rmnm="find . -name 'node_modules' -type d -prune -print -exec rm -rf '{}' \;"
@@ -124,14 +136,12 @@ alias rmnm="find . -name 'node_modules' -type d -prune -print -exec rm -rf '{}' 
 # Find my ip address when on wifi
 alias myip="ipconfig getifaddr en0"
 
-unalias run-help
+# unalias run-help
 autoload run-help
 HELPDIR=/usr/local/share/zsh/help
 
-export PATH="/usr/local/bin:/Users/edward.andrewshodgson/.bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/sbin"
-# export MANPATH="/usr/local/man:$MANPATH"
+export PATH="$PATH:/usr/local/bin:/Users/edward.andrewshodgson/.bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/sbin:$HOME/.local/bin"
 
-# eval "$(rbenv init -)"
 
 # path for postgres.app
 # export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/latest/bin
@@ -143,43 +153,19 @@ export BUNDLER_EDITOR="code --wait"
 # node
 export NODE_ENV="development"
 
-# tiny care terminal
-export TTC_BOTS='tinycarebot,selfcare_bot,magicrealismbot'
-export TTC_REPOS='/Users/edward.andrewshodgson/work,/Users/edward.andrewshodgson/play'
-export TTC_REPOS_DEPTH=2
-export TTC_WEATHER='York, United Kingdom'
-export TTC_CELSIUS=true
-export TTC_UPDATE_INTERVAL=20
-export TTC_CONSUMER_KEY='a6x1uH6F77hYvtNPR1kkkZpR3'
-export TTC_CONSUMER_SECRET='7YNhq80l5TBVlwmSizBGXDZIyfJMQOptfAKEgjaX3cULPLEVPQ'
-export TTC_ACCESS_TOKEN='11474442-046FtwMneztt3N63C7eUiaFnJlOMu2OZSr12g9lXx'
-export TTC_ACCESS_TOKEN_SECRET='NnJhYTFs7v7hPPvs6LTTqGFISZcqNB7avnnRS2rcBlWf2'
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
-
 # Rust-lang
 export PATH="$HOME/.cargo/bin:$PATH"
-
-# python
-export PATH=$HOME/Library/Python/3.7/bin:$PATH
 
 # Completions
 fpath+=~/.zfunc
 compinit
 
-# adb/android
-export PATH=$HOME/Library/Android/sdk/platform-tools/adb:$PATH
-
-# heroku autocomplete setup
-# HEROKU_AC_ZSH_SETUP_PATH=/Users/edward.andrewshodgson/Library/Caches/heroku/autocomplete/zsh_setup && test -f $HEROKU_AC_ZSH_SETUP_PATH && source $HEROKU_AC_ZSH_SETUP_PATH
-
-export GROOVY_HOME=/usr/local/opt/groovy/libexec
-
 # cd'ing to frequently-used directories - https://thoughtbot.com/blog/cding-to-frequently-used-directories-in-zsh
 setopt auto_cd
-cdpath=($HOME $HOME/work $HOME/Developer/work/dashboards-and-visualisations/packages $HOME/Developer/work/dashboards-and-visualisations/workspaces $HOME/play)
+cdpath=($HOME/Developer $HOME/Developer/work $HOME/Developer/work/dashboards-and-visualisations/packages $HOME/Developer/work/dashboards-and-visualisations/resources $HOME/Developer/work/dashboards-and-visualisations/workspaces $HOME/Developer/play)
+
+# Rusty care terminal
+export RCT_REPOS="/Users/edward.andrewshodgson/Developer/work,/Users/edward.andrewshodgson/Developer/play"
 
 # give node more memory
 export NODE_OPTIONS="--max-old-space-size=16384"
@@ -192,6 +178,8 @@ export NODE_OPTIONS="--max-old-space-size=16384"
 # aws profile
 export AWS_PROFILE=ap-lotus-dev
 
+export LAUNCHDARKLY_AUTH_TOKEN=api-336fc06b-29f1-4e85-9e65-b83e7615d2e7
+
 # gcloud cli
 # source "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
 # source "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
@@ -199,6 +187,30 @@ export AWS_PROFILE=ap-lotus-dev
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-# export SDKMAN_DIR="/Users/edward.andrewshodgson/.sdkman"
-# [[ -s "/Users/edward.andrewshodgson/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/edward.andrewshodgson/.sdkman/bin/sdkman-init.sh"
+tiny-care-terminal(){
+  docker build ~/Developer/play/tiny-care-terminal-wrapper -t tiny-care-terminal-docker & \
+	clear & \
+  	docker run -it --rm \
+	  -v ~/Developer/play:/code/play \
+	  -v ~/Developer/work:/code/work \
+	  -v ~/.gitconfig:/root/.gitconfig \
+	  tiny-care-terminal-docker
+}
+
+#
+. $(brew --prefix asdf)/libexec/asdf.sh
+. $(brew --prefix asdf)/etc/bash_completion.d/asdf.bash
+. ~/.asdf/plugins/java/set-java-home.zsh
+
+# pnpm
+export PNPM_HOME="/Users/edward.andrewshodgson/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
+
+# To customize prompt, run `p10k configure` or edit ~/.dotfiles/p10k.zsh.
+[[ ! -f ~/.dotfiles/p10k.zsh ]] || source ~/.dotfiles/p10k.zsh
+
+eval "$(atuin init zsh)"
