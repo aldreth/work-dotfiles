@@ -26,3 +26,5 @@
 	repo = /Users/edward.andrewshodgson/Developer/work/dashboard-config-service
 	repo = /Users/edward.andrewshodgson/Developer/work/dashboards-and-visualisations
 	repo = /Users/edward.andrewshodgson/Developer/work/core-client
+[pull]
+	rebase = true
