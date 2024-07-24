@@ -31,4 +31,16 @@
   //     }
   //   }
   // }
+  //
+  "lsp": {
+    // Specify the LSP name as a key here.
+    "rust-analyzer": {
+      // These initialization options are merged into Zed's defaults
+      "initialization_options": {
+        "check": {
+          "command": "clippy" // rust-analyzer.check.command (default: "check")
+        }
+      }
+    }
+  }
 }
