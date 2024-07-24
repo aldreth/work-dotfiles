@@ -5,7 +5,8 @@ local get_font = require 'get_font'
 local module = {}
 
 local theme_colors = {
-    pale_yellow = '#fefbf3'
+    pale_yellow = '#fefbf3',
+    pale_blue = '#e3eafd'
 }
 local solarized_colors = {
     dark = {
@@ -42,11 +43,11 @@ local function colors_for_appearance(appearance)
         inactive_titlebar_bg = theme_colors.pale_yellow,
 
         -- The color of the inactive tab bar edge/divider
-        inactive_tab_edge = '#000000',
+        inactive_tab_edge = theme_colors.pale_blue,
 
         -- The active tab is the one that has focus in the window
         -- The color of the background area for the tab
-        active_tab_bg_color = '#e3eafd',
+        active_tab_bg_color = theme_colors.pale_blue,
         -- The color of the text for the tab
         active_tab_fg_color = '#657B83',
 
@@ -58,7 +59,7 @@ local function colors_for_appearance(appearance)
 
         -- The new tab button that let you create new tabs
         -- The color of the background area for the tab
-        new_tab_bg_color = '#e3eafd',
+        new_tab_bg_color = theme_colors.pale_blue,
         -- The color of the text for the tab
         new_tab_fg_color = '#808080',
 
@@ -145,10 +146,10 @@ function module.apply_to_config(config)
             inactive_tab_hover = {
                 bg_color = colors.inactive_tab_bg_color,
                 fg_color = colors.inactive_tab_fg_color,
-                italic = true
 
                 -- The same options that were listed under the `active_tab` section above
                 -- can also be used for `inactive_tab_hover`.
+                italic = true
             },
 
             -- The new tab button that let you create new tabs

@@ -946,11 +946,11 @@ function module.apply_to_config(config)
     {
         key = 'LeftArrow',
         mods = 'SUPER',
-        action = act.ActivateTabRelative(1)
+        action = act.ActivateTabRelative(-1)
     }, {
         key = 'RightArrow',
         mods = 'SUPER',
-        action = act.ActivateTabRelative(-1)
+        action = act.ActivateTabRelative(1)
     }, --
     -- CMD + k to clear pane
     {
